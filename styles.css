@@ -1,0 +1,9 @@
+.stick {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	max-height: 120 px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
