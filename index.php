@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <!-- Custom JS -->
-        <script src="scripts.js" type="text/javascript"></script>
-
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+        <!--Plugins-->
+        <link rel="stylesheet" href="css/SideMenu.css">
 
     </head>
     <body>
@@ -170,15 +168,40 @@
 
          
             </div>
+            <div id="mySidenav" class="col-md-6 stick slideout-menu sidenav">
+                
+                <h2>Links</h2>
+                <div>
+                    <ul class="links">
+                    </ul>   
+                </div>
+            </div> 
+
             <div class="sidebar">
-                <div class="col-md-6 stick">
-                    <h2>Links</h2>
-                    <div>
-                        <ul class="links">
-                        </ul>   
-                    </div>
-                </div> 
+                <span id="open-menu" class="open-menu" onclick="openNav()">Contents &#9776;</span>
+                <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             </div>
         </div>
+
+        <!-- Scripts -->
+        <script>
+            function openNav() {
+                $("#mySidenav").css("width", "250px");
+                $("#closebtn").css("display", "block");
+                $("#open-menu").html("Contents ");
+                $("#open-menu").css("margin-right", "60px");
+            }
+
+            function closeNav() {
+                $("#mySidenav").css("width", "0");
+                $("#closebtn").css("display", "none");
+                $("#open-menu").html("Contents &#9776;");
+                $("#open-menu").css("margin-right", "25px");
+            }
+        </script>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="js/scripts.js" type="text/javascript"></script>
     </body>
 </html>

@@ -1,7 +1,24 @@
+/*  After learning how to manipulate mySQL database with PHP, I want to post titles
+and links arrays to database with this page id on first load.  When the page is edited,
+I want to update the database to changed variable to true. When page is created
+I want to add a row to database table with pageID, changed, titles, and links columns. 
+Then, before running below script, I want to check the database if changed == true 
+or if titles and links is empty. If not, run the script and then post titles and links arrays. After posting
+I need to set changed variable to false.  Otherwise, if arrays aren't empty and changed is false,
+use database titles and links to create the sidebar menu links. If changed == true, get 
+titles and links from backend, and run separate script to generate new from front end.
+Compare titles.  If they don't match update titles from back at that index with
+titles from front. Then, if link from front doesn't match any links from back, update link
+from back at that index with link from front. Then set front arrays equal to back arrays. Run
+script like a first time, and post titles and links arrays.  Overwrite the row. After posting, set changed 
+to false. */
+
+//generate titles and links arrays from front end 
 $(document).ready(function(){
     // generate links from headers in article for sidebar menu
     // array to hold link titles
     let titles = [];
+    let links = [];
 
     // select all h2 and h3's
     $("h2, h3").each(function() {
@@ -11,6 +28,7 @@ $(document).ready(function(){
 
         // html to append to unordered list after links are generated
         const content = "<li><a class='link' href='#" + randomNum.toString() + "'/></a></li>" ;
+        links.push(content);
 
         // add unique id to each h2 or h3
         $(this).attr("id", randomNum.toString());
@@ -50,8 +68,10 @@ $(document).ready(function(){
     https://stackoverflow.com/questions/7717527/smooth-scrolling-when-clicking-an-anchor-link */
     $('a[href^="#"]').click(function(){
         $('html, body').animate({
-            scrollTop: $( $(this).attr('href') ).offset().top - 20
+            scrollTop: $( $(this).attr('href') ).offset().top-20
         }, 500);
+        var hash = $(this).attr('href');
+        window.location.hash = (hash);
         return false;
     });
 });
