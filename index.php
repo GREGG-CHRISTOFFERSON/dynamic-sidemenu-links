@@ -1,3 +1,15 @@
+<?php
+    
+    // remember if form has already been submitted
+    if (!isset($_POST['order'])) {
+        $submitted = 'false';
+    } else {
+        $submitted = 'true';
+    }
+    
+    // get the page id
+    $pageID = "02";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +25,44 @@
         <link rel="stylesheet" href="css/SideMenu.css">
 
     </head>
+    <!-- hidden page ID for JQuery selectors-->
+    <div id="submitted" style="display:none;"><?=$pageID?></div>
+    <!-- hidden submitted variable for JQuery selectors-->
+    <div id="submitted" style="display:none;"><?=$submitted?></div>
+        
     <body>
+        <h1>Gathering Form Input: POST</h1>
+        <form id="theForm" method="post">
+            <p>
+                <label for="textfield">Text Field:</label>
+                <input type="text" name="textfield" id="textfield">
+            </p>
+            <p>
+                <label for="quantity">Number:</label>
+                <input name="quantity" type="number" id="quantity" min="0" value="0">
+            </p>
+            <p>
+                <label for="color">Color:</label>
+                <select name="color" id="color">
+                    <option value="yellow" selected>Yellow</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="orange">Orange</option>
+                </select>
+            </p>
+            <p>
+                <input type="submit" name="order" id="order" value="Order">
+                <input type="hidden" name="price" id="price" value="3">
+            </p>
+        </form>
+        <pre>
+        <?php
+        if (isset($_POST['order'])) {
+                print_r($_POST);
+                $submitted = true;
+        }
+        ?>
+        </pre>
         <div class="row container">
             <div class="col-md-6 pull-left">
                 <h2>This is a heading 1</h2>
@@ -168,8 +217,8 @@
 
          
             </div>
+            
             <div id="mySidenav" class="col-md-6 stick slideout-menu sidenav">
-                
                 <h2>Links</h2>
                 <div>
                     <ul class="links">
@@ -178,27 +227,11 @@
             </div> 
 
             <div class="sidebar">
-                <span id="open-menu" class="open-menu" onclick="openNav()">Contents &#9776;</span>
-                <a id="closebtn" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <span id="open-menu" class="open-menu">Contents &#9776;</span>
+                <a id="closebtn" href="javascript:void(0)" class="closebtn" >&times;</a>
             </div>
         </div>
-
         <!-- Scripts -->
-        <script>
-            function openNav() {
-                $("#mySidenav").css("width", "250px");
-                $("#closebtn").css("display", "block");
-                $("#open-menu").html("Contents ");
-                $("#open-menu").css("margin-right", "60px");
-            }
-
-            function closeNav() {
-                $("#mySidenav").css("width", "0");
-                $("#closebtn").css("display", "none");
-                $("#open-menu").html("Contents &#9776;");
-                $("#open-menu").css("margin-right", "25px");
-            }
-        </script>
         <!-- JQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Custom JS -->

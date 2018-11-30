@@ -15,6 +15,11 @@ to false. */
 
 //generate titles and links arrays from front end 
 $(document).ready(function(){
+ 
+    // get the pageID
+    const div = $("#pageID");
+    const pageID = div.text();
+    
     // generate links from headers in article for sidebar menu
     // array to hold link titles
     let titles = [];
@@ -74,4 +79,36 @@ $(document).ready(function(){
         window.location.hash = (hash);
         return false;
     });
+    
+    // menu open and close functions
+    function openNav() {
+                $("#mySidenav").css("width", "250px");
+                $("#closebtn").css("display", "block");
+                $("#open-menu").html("Contents ");
+                $("#open-menu").css("margin-right", "60px");
+            }
+
+    function closeNav() {
+        $("#mySidenav").css("width", "0");
+        $("#closebtn").css("display", "none");
+        $("#open-menu").html("Contents &#9776;");
+        $("#open-menu").css("margin-right", "25px");
+    }
+    
+    // menu open and close click handlers
+    $("#open-menu").click(function(){
+                openNav();
+            });
+            
+    $("#closebtn").click(function(){
+        closeNav();
+    });
+    
+    // submit hidden form to server if it hasn't been submitted already
+    let submittedDiv = $("#submitted");
+    let submitted = submittedDiv.text();
+    if (submitted === 'false') {
+        console.log(submitted);
+        $("#order").click();
+    }
 });
