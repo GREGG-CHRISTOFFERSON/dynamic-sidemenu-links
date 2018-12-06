@@ -110,5 +110,8 @@ $(document).ready(function(){
     if (submitted === 'false') {
         console.log(submitted);
         $("#order").click();
-    }
+    } else {
+		console.log("not submitted");
+	}
+	console.log(submitted);
 });

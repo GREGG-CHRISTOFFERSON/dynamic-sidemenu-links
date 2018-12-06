@@ -26,7 +26,7 @@
 
     </head>
     <!-- hidden page ID for JQuery selectors-->
-    <div id="submitted" style="display:none;"><?=$pageID?></div>
+    <div id="pageID" style="display:none;"><?=$pageID?></div>
     <!-- hidden submitted variable for JQuery selectors-->
     <div id="submitted" style="display:none;"><?=$submitted?></div>
         
